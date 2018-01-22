@@ -6,8 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "babel src -d dist",
-		"dev":
-			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
+		"dev": "nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
 	},
 	"author": "Natanael Guerra <natanaelguerra@gmail.com>",
 	"license": "MIT",
@@ -16,7 +15,8 @@
 		"chokidar": "^2.0.0",
 		"fs-extra": "^5.0.0",
 		"glob": "^7.1.2",
-		"lodash": "^4.17.4"
+		"lodash": "^4.17.4",
+		"node-cleanup": "^2.1.2"
 	},
 	"bin": {
 		"ghost": "./bin/ghost.js"
@@ -31,6 +31,10 @@
 		"printWidth": 70
 	},
 	"babel": {
-		"presets": [["env"]]
+		"presets": [
+			[
+				"env"
+			]
+		]
 	}
 }

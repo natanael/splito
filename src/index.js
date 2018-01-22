@@ -7,6 +7,7 @@ import _map from "lodash/map";
 import _size from "lodash/size";
 import _reduce from "lodash/reduce";
 import cp from "child_process";
+import nodeCleanup from "node-cleanup";
 
 const NUKE = "☢";
 
@@ -27,9 +28,9 @@ const printChunks = chunks => {
 };
 
 const handleChange = (event, path) => {
-	console.log(path);
 	const content = fs.readFileSync(path).toString();
 	const lines = content.split(NEW_LINE);
+	console.log("handleChange", path, _size(lines));
 	let current_chunk;
 
 	const chunks = _reduce(
@@ -163,4 +164,9 @@ export default () => {
 	const watcher = chokidar.watch("./ghostfile.js");
 
 	watcher.on("all", handleChange);
+
+	nodeCleanup((exitCode, signal) => {
+		console.log(chalk.bold(`[ Cleaning up ]`));
+		fs.unlink("./ghostfile.js");
+	});
 };
