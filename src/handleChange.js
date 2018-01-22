@@ -30,7 +30,7 @@ const handleChange = (event, path) => {
 	const chunks = _reduce(
 		lines,
 		(chunks, line) => {
-			if (line.match(NUKE)) {
+			if (line.match(`^${NUKE}`)) {
 				chunks[line] = [];
 				current_chunk = line;
 				return chunks;
@@ -153,6 +153,8 @@ const handleChange = (event, path) => {
 				chunks[`${NUKE} IGNORED "${cmd}"`] = value;
 				return chunks;
 			}
+
+			return chunks;
 		},
 		{}
 	);
