@@ -1,0 +1,36 @@
+{
+	"name": "ghost-editor",
+	"version": "1.0.0",
+	"description": "Passive event based multifile editor",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "babel src -d dist",
+		"dev":
+			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
+	},
+	"author": "Natanael Guerra <natanaelguerra@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"bluebird": "^3.5.1",
+		"chokidar": "^2.0.0",
+		"fs-extra": "^5.0.0",
+		"glob": "^7.1.2",
+		"lodash": "^4.17.4"
+	},
+	"bin": {
+		"ghost": "./bin/ghost.js"
+	},
+	"devDependencies": {
+		"babel": "^6.23.0",
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.6.1"
+	},
+	"prettier": {
+		"useTabs": true,
+		"printWidth": 70
+	},
+	"babel": {
+		"presets": [["env"]]
+	}
+}
