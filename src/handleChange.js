@@ -114,7 +114,7 @@ const handleChange = (event, path) => {
 				try {
 					chunks[`${NUKE} SUCCESS load "${wildcard}"`] = _map(
 						glob.sync(wildcard),
-						filename => `${NUKE} pick "${filename}"`
+						filename => `\t${NUKE} pick "${filename}"`
 					);
 				} catch (e) {
 					console.error(
@@ -162,7 +162,7 @@ const handleChange = (event, path) => {
 	console.log(chalk.grey("Finished"));
 	fs.writeFileSync(
 		"./ghostfile.js",
-		printChunks(output).replace(/[\n]+$/g, "")
+		printChunks(output).replace(/[\n]+$/g, "\n")
 	);
 };
 
