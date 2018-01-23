@@ -1,6 +1,4 @@
 import { NUKE } from "../config";
-import _reduce from "lodash/reduce";
-import _size from "lodash/size";
 
 export default {
 	regex: `^${NUKE} exec (.*)`,
@@ -20,4 +18,4 @@ export default {
 		}
 		return chunks;
 	}
-}
+};

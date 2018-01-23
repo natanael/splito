@@ -2,12 +2,12 @@ import { NUKE } from "../config";
 import _reduce from "lodash/reduce";
 import _size from "lodash/size";
 
-import IGNORE from './ignore';
-import EXECUTE from './execute';
-import FILE from './file';
-import LOAD from './load';
-import PICK from './pick';
-import DEFAULT from './default';
+import IGNORE from "./ignore";
+import EXECUTE from "./execute";
+import FILE from "./file";
+import LOAD from "./load";
+import PICK from "./pick";
+import DEFAULT from "./default";
 
 export default chunks => {
 	return _reduce(
