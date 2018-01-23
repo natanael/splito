@@ -8,9 +8,32 @@
 		"build": "babel src -d dist",
 		"prettier": "prettier --write 'src/**/*.js*'",
 		"dev":
-			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
+			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js",
+		"semantic-release":
+			"semantic-release pre && npm publish && semantic-release post"
 	},
-	"author": "Natanael Guerra <natanaelguerra@gmail.com>",
+	"bin": {
+		"ghost": "./bin/ghost.js"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/natanael/ghost-editor.git"
+	},
+	"keywords": [
+		"editor",
+		"ghost",
+		"repl",
+		"multifile",
+		"terminal",
+		"console"
+	],
+	"author": {
+		"name": "Natanael Guerra",
+		"url": "http://github.com/natanael"
+	},
 	"license": "MIT",
 	"dependencies": {
 		"bluebird": "^3.5.1",
@@ -20,15 +43,13 @@
 		"lodash": "^4.17.4",
 		"node-cleanup": "^2.1.2"
 	},
-	"bin": {
-		"ghost": "./bin/ghost.js"
-	},
 	"devDependencies": {
 		"babel": "^6.23.0",
 		"babel-cli": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
 		"jest": "^22.1.4",
-		"prettier": "^1.10.2"
+		"prettier": "^1.10.2",
+		"semantic-release": "^12.2.4"
 	},
 	"prettier": {
 		"useTabs": true,
