@@ -6,6 +6,7 @@
 	"scripts": {
 		"test": "jest --verbose --roots src",
 		"build": "babel src -d dist",
+		"prettier": "prettier --write 'src/**/*.js*'",
 		"dev":
 			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
 	},
@@ -26,7 +27,8 @@
 		"babel": "^6.23.0",
 		"babel-cli": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
-		"jest": "^22.1.4"
+		"jest": "^22.1.4",
+		"prettier": "^1.10.2"
 	},
 	"prettier": {
 		"useTabs": true,
