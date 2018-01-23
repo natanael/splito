@@ -1,0 +1,8 @@
+deploy:
+  provider: npm
+  email: ntnlbg@gmail.com
+  api_key:
+    secure: Mu25Xm8K5VptkxtM8ng3ojk2SMb+Z5eemTbgCgvWZ4oupo695M9XE8jp/UpwIuWJjUpiPworBDm1jlr6Gxo4aZzYDmUX80qZKWcCVHGCwZwbDjfUrjeEoME2nTBrnwMYRCHjV2hjgLUtqVt6cWx1cYZpwQDjTT6LMq9w/w4XU9Okjt9I12xL0GeNM3cqqruRsW3+hCqgMdLQPLxQH2OzKwf9USA7Wae+duOJHX+cEMOlgMhydCqkHpWitq5GDlCGtkantw2luUsgBsQ/jAf/N9oiprG3FLeV7D5lkWSBFiSHNnfuidR/++aj6DNNQ/r1obFzqIBrhwEahWJAeUZIXtvA0n5Kl9OrwI+qFR3sJznzNHoOVS7JIJcr6zNq5LGxgSlDObj+ksHQd9EH4eN/lTRaDMgiN607acADzc8W+AJj+kotoGlu2C8/Ik7mk3NVQwgOpwMDEzOToIOgYCE0xCoxkdVChuqaHgEmv4WlgxY3SeFEh6EcAGjPlwh/Ao8eCZBaUKhTz1joQm1UQ8svBqBNdlvSobuThCboS8BlJ9Kap1SF1URfHkpBvV2W8dK3uwYKAN2xqQ3Sm1wro7aMmHg+lpgeOtj/jh36NpOVc0O+FsEfYooFS4T1u58K1cIo6ukSPGCBqAApjles43uREYSnXk72qmdnOS4HrTUn7OE=
+  on:
+    tags: true
+    repo: natanael/ghost-editor
