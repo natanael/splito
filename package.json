@@ -1,6 +1,6 @@
 {
 	"name": "ghost-editor",
-	"version": "1.0.0",
+	"version": "0.0.0",
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"scripts": {
