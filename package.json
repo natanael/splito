@@ -1,19 +1,19 @@
 {
 	"name": "splito",
-	"version": "0.0.0",
+	"version": "0.0.3",
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"scripts": {
 		"test": "jest --verbose --roots src",
-		"build": "babel src -d dist",
+		"build": "babel src -d lib",
 		"prettier": "prettier --write 'src/**/*.js*'",
 		"dev":
-			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js",
+			"nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
 		"semantic-release":
-			"semantic-release pre && npm publish && semantic-release post"
+			"semantic-release -b master && npm publish && semantic-release post"
 	},
 	"bin": {
-		"ghost": "./bin/ghost.js"
+		"splito": "./bin/splito.js"
 	},
 	"engines": {
 		"node": ">=4"
@@ -24,7 +24,7 @@
 	},
 	"keywords": [
 		"editor",
-		"ghost",
+		"splito",
 		"repl",
 		"multifile",
 		"terminal",

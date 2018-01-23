@@ -58,4 +58,4 @@ typings/
 .env
 
 ghostfile.js
-dist
+lib
