@@ -4,9 +4,10 @@
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jest --verbose --roots src",
 		"build": "babel src -d dist",
-		"dev": "nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
+		"dev":
+			"nodemon ./bin/ghost.js --exec babel-node --preset env --watch index.js"
 	},
 	"author": "Natanael Guerra <natanaelguerra@gmail.com>",
 	"license": "MIT",
@@ -24,17 +25,14 @@
 	"devDependencies": {
 		"babel": "^6.23.0",
 		"babel-cli": "^6.26.0",
-		"babel-preset-env": "^1.6.1"
+		"babel-preset-env": "^1.6.1",
+		"jest": "^22.1.4"
 	},
 	"prettier": {
 		"useTabs": true,
 		"printWidth": 70
 	},
 	"babel": {
-		"presets": [
-			[
-				"env"
-			]
-		]
+		"presets": [["env"]]
 	}
 }
