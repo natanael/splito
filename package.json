@@ -4,11 +4,14 @@
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"scripts": {
+		"tsc": "tsc",
 		"test": "jest --verbose --roots src",
 		"build": "babel src -d lib",
 		"prettier": "prettier --write 'src/**/*.js*'",
-		"dev": "nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
-		"semantic-release": "semantic-release -b master && npm publish && semantic-release post",
+		"dev":
+			"nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
+		"semantic-release":
+			"semantic-release -b master && npm publish && semantic-release post",
 		"manual": "yarn build; npm version patch; npm publish"
 	},
 	"bin": {
@@ -49,7 +52,8 @@
 		"babel-preset-env": "^1.6.1",
 		"jest": "^22.1.4",
 		"prettier": "^1.10.2",
-		"semantic-release": "^12.2.4"
+		"semantic-release": "^12.2.4",
+		"typescript": "^2.6.2"
 	},
 	"prettier": {
 		"useTabs": true,
@@ -59,10 +63,6 @@
 		"lib": "./lib"
 	},
 	"babel": {
-		"presets": [
-			[
-				"env"
-			]
-		]
+		"presets": [["env"]]
 	}
 }
