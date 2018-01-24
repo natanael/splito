@@ -7,8 +7,10 @@
 		"test": "jest --verbose --roots src",
 		"build": "babel src -d lib",
 		"prettier": "prettier --write 'src/**/*.js*'",
-		"dev": "nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
-		"semantic-release": "semantic-release -b master && npm publish && semantic-release post"
+		"dev":
+			"nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
+		"semantic-release":
+			"semantic-release -b master && npm publish && semantic-release post"
 	},
 	"bin": {
 		"splito": "./bin/splito.js"
@@ -58,10 +60,6 @@
 		"lib": "./lib"
 	},
 	"babel": {
-		"presets": [
-			[
-				"env"
-			]
-		]
+		"presets": [["env"]]
 	}
 }

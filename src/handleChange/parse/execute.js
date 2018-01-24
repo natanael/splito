@@ -1,4 +1,6 @@
-import { NUKE } from "../config";
+import chalk from "chalk";
+import cp from "child_process";
+import { NUKE, NEW_LINE } from "../../config";
 
 export default {
 	regex: `^${NUKE} exec (.*)`,

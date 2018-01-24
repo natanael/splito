@@ -1,4 +1,5 @@
-import { NUKE } from "../config";
+import chalk from "chalk";
+import { NUKE } from "../../config";
 
 export default {
 	regex: `^${NUKE} load (.*)`,

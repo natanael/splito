@@ -1,4 +1,4 @@
-import { NUKE } from "../config";
+import { NUKE } from "../../config";
 import _reduce from "lodash/reduce";
 import _size from "lodash/size";
 

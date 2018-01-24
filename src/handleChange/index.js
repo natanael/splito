@@ -8,11 +8,11 @@ import _map from "lodash/map";
 import _size from "lodash/size";
 import _reduce from "lodash/reduce";
 
-import printChunks from "./util/printChunks.js";
-import { NUKE, NEW_LINE } from "./config";
+import printChunks from "../util/printChunks.js";
+import { NUKE, NEW_LINE } from "../config";
 import { setTimeout } from "core-js/library/web/timers";
 
-import parse from "./process";
+import parse from "./parse";
 
 const handleChange = (event, path) => {
 	const content = fs.readFileSync(path).toString();
