@@ -1,6 +1,6 @@
 {
 	"name": "splito",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"scripts": {
