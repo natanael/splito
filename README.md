@@ -1,4 +1,6 @@
-# ghost-editor
+[ALPHA] working, but not ready
+
+# splito
 
 Save-execute editor for multiple file editing
 
