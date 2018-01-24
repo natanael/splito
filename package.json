@@ -53,6 +53,9 @@
 		"useTabs": true,
 		"printWidth": 70
 	},
+	"directories": {
+		"lib": "./lib"
+	},
 	"babel": {
 		"presets": [
 			[
