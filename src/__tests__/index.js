@@ -1,7 +1,6 @@
 import cp from "child_process";
 import fs from "fs-extra";
 import { NUKE } from "../config";
-import { setTimeout } from "core-js/library/web/timers";
 
 //STILL COULD NOT FIND A PROPER WAY TO TEST THIS
 describe("Lifecycle", () => {
