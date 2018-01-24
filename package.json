@@ -1,16 +1,14 @@
 {
 	"name": "splito",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"scripts": {
 		"test": "jest --verbose --roots src",
 		"build": "babel src -d lib",
 		"prettier": "prettier --write 'src/**/*.js*'",
-		"dev":
-			"nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
-		"semantic-release":
-			"semantic-release -b master && npm publish && semantic-release post",
+		"dev": "nodemon ./bin/splito.js --exec babel-node --preset env --watch index.js",
+		"semantic-release": "semantic-release -b master && npm publish && semantic-release post",
 		"manual": "yarn build; npm version patch; npm publish"
 	},
 	"bin": {
@@ -61,6 +59,10 @@
 		"lib": "./lib"
 	},
 	"babel": {
-		"presets": [["env"]]
+		"presets": [
+			[
+				"env"
+			]
+		]
 	}
 }
