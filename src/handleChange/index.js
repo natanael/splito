@@ -10,7 +10,6 @@ import _reduce from "lodash/reduce";
 
 import printChunks from "../util/printChunks.js";
 import { NUKE, NEW_LINE } from "../config";
-import { setTimeout } from "core-js/library/web/timers";
 
 import parse from "./parse";
 
