@@ -9,7 +9,7 @@
 		"start": "ts-node ./src/index.ts",
 		"dev": "nodemon src/index.ts --exec ts-node --watch src/index.ts",
 		"semantic-release": "semantic-release -b master && npm publish && semantic-release post",
-		"manual": "yarn build && npm version patch && npm publish"
+		"manual": "npm run build && npm version patch && npm publish"
 	},
 	"bin": {
 		"splito": "./bin/splito.js"
