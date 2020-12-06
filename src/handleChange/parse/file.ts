@@ -6,7 +6,7 @@ import { Parser } from "./types";
 
 export const FILE: Parser = {
 	parseIfApplicable(chunk, outputStream) {
-		const match = chunk.key.match(`^${NUKE} file (.*)`);
+		const match = chunk.key.match(`^${NUKE} file "([^\"]+)"`);
 		if (match == null) {
 			return false;
 		}
