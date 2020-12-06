@@ -20,7 +20,7 @@ export const LOAD: Parser = {
 				glob.sync(wildcard.replace(/^\"|"$/g, '')),
 				filename => `\t${NUKE} open "${filename}"`
 			).join(NEW_LINE);
-			outputStream.write(`${NUKE} SUCCESS load ${wildcard}\n${result}`);
+			outputStream.write(`${NUKE} SUCCESS load ${wildcard}\n${result}\n`);
 		} catch (e) {
 			console.error(chalk.red(chalk.bold(`FAILED TO PERFORM LOAD`)), e);
 			outputStream.write(`${NUKE} FAILURE load ${glob}\n${chunk.content}`);

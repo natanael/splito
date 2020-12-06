@@ -26,10 +26,10 @@ export class ChangeHandler {
 			this.thatWasUs = false;
 			return;
 		}
-		if (stats.size == 0) {
-			console.log(chalk.grey("got an empty file, false change, fs hiccup, ignoring.."));
-			return;
-		}
+		// if (stats.size == 0) {
+		// 	console.log(chalk.grey("got an empty file, false change, fs hiccup, ignoring.."));
+		// 	return;
+		// }
 		if (stats.mtimeMs === this.mtimeMs) {
 			console.log(chalk.grey("same modification time, false change, ignoring.."));
 			return;
