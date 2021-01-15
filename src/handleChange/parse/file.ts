@@ -19,9 +19,9 @@ export const FILE: Parser = {
 			const response = fs.writeFileSync(filename, chunk.content);
 			console.log(JSON.stringify(response));
 			outputStream.write(`${chunk.key}\n${chunk.content}\n`
-				.replace(/\n/g, '☢')
-				.replace(/☢+$/, '☢')
-				.replace(/☢/g, '\n')
+				.replace(/\n/g, '‡')
+				.replace(/‡+$/, '‡')
+				.replace(/‡/g, '\n')
 			);
 		} catch (e) {
 			outputStream.write(`${NUKE} FAILED file ${filename}\n`);
