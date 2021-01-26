@@ -14,7 +14,7 @@ export const OPEN: Parser = {
 		filename = JSON.parse(filename);
 		console.log(chalk.bold("open", filename));
 		try {
-			outputStream.write(`${NUKE} file "${filename}"\n${fs.readFileSync(filename).toString()}`)
+			outputStream.write(`\n${NUKE} file "${filename}"\n${fs.readFileSync(filename).toString()}`)
 		} catch (e) {
 			console.error(chalk.red(chalk.bold(`FAILED TO LOAD FILE`)), e);
 		}
