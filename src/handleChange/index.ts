@@ -21,11 +21,11 @@ export class ChangeHandler {
 	}
 
 	handle(path: string, stats: fs.Stats) {
-		if (this.thatWasUs) {
-			console.log(chalk.grey("last change was ours, ignoring.."));
-			this.thatWasUs = false;
-			return;
-		}
+		// if (this.thatWasUs) {
+		// 	console.log(chalk.grey("last change was ours, ignoring.."));
+		// 	this.thatWasUs = false;
+		// 	return;
+		// }
 		// if (stats.size == 0) {
 		// 	console.log(chalk.grey("got an empty file, false change, fs hiccup, ignoring.."));
 		// 	return;
@@ -81,7 +81,9 @@ export class ChangeHandler {
 					fs.unlinkSync(tempPath);
 				} catch {}
 				this.handling = false;
-				this.thatWasUs = true;
+				// Capture system's mTimeMs
+				this.mtimeMs = fs.statSync(path).mtimeMs;
+				// this.thatWasUs = true;
 				console.log(chalk.grey(`... done updating ${GHOSTFILE}`));
 			})
 		});

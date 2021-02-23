@@ -28,3 +28,4 @@ export const LOAD: Parser = {
 		return true;
 	}
 };
+

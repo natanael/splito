@@ -24,3 +24,4 @@ export const EXECUTE: Parser = {
 		return true;
 	}
 };
+
