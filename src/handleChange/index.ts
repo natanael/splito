@@ -10,9 +10,7 @@ import { Chunk } from "./parse/types.js";
 import { parseChunk } from "./parse/index.js";
 
 export class ChangeHandler {
-	thatWasUs: boolean = false;
 	handling: boolean = false;
-	mtimeMs: number = 0;
 
 	constructor() {
 		this.handling = false;
@@ -57,8 +55,10 @@ export class ChangeHandler {
 				parseChunk(currentChunk, writeStream);
 			}
 			console.log(chalk.grey(`Finished, updating ${GHOSTFILE}...`));
-			// fs.renameSync(tempPath, path);
 			writeStream.close();
+			if (process.platform === 'win32') {
+				fs.unlinkSync(path);
+			}
 			const overwriteStream = fs.createReadStream(tempPath);
 			overwriteStream.pipe(fs.createWriteStream(path));
 			overwriteStream.on('end', () => {
@@ -66,9 +66,6 @@ export class ChangeHandler {
 					fs.unlinkSync(tempPath);
 				} catch {}
 				this.handling = false;
-				// Capture system's mTimeMs
-				this.mtimeMs = fs.statSync(path).mtimeMs;
-				// this.thatWasUs = true;
 				console.log(chalk.grey(`... done updating ${GHOSTFILE}`));
 			})
 		});
