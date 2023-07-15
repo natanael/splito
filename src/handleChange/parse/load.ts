@@ -1,9 +1,9 @@
 import chalk from "chalk";
-import glob from "glob";
+import { sync as globSync } from "glob";
 
-import _map from "lodash/map";
+import _map from "lodash/map.js";
 
-import { NEW_LINE, NUKE } from "../../config";
+import { NUKE } from "../../config.js";
 import { Parser } from "./types";
 
 export const LOAD: Parser = {
@@ -17,15 +17,14 @@ export const LOAD: Parser = {
 		console.log(chalk.bold("load", wildcard));
 		try {
 			const result = _map(
-				glob.sync(wildcard.replace(/^\"|"$/g, '')),
+				globSync(wildcard.replace(/^\"|"$/g, '')),
 				filename => `\t${NUKE} open "${filename}"`
-			).join(NEW_LINE);
+			).join("\n");
 			outputStream.write(`${NUKE} SUCCESS load ${wildcard}\n${result}\n`);
 		} catch (e) {
 			console.error(chalk.red(chalk.bold(`FAILED TO PERFORM LOAD`)), e);
-			outputStream.write(`${NUKE} FAILURE load ${glob}\n${chunk.content}`);
+			outputStream.write(`${NUKE} FAILURE load ${wildcard}\n${chunk.content}`);
 		}
 		return true;
 	}
 };
-

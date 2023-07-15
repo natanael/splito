@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import cp from "child_process";
-import { NUKE, NEW_LINE } from "../../config";
-import { Parser } from "./types";
+import { NUKE } from "../../config.js";
+import { Parser } from "./types.js";
 
 export const EXECUTE: Parser = {
 	parseIfApplicable(chunk, outputStream) {
@@ -18,10 +18,11 @@ export const EXECUTE: Parser = {
 			outputStream.write(`${NUKE} SUCCESS exec ${cmd}\n${response}\n`);
 		} catch (e) {
 			console.error(chalk.red(chalk.bold(`EXECUTE statement failed: \n`)), e);
-			outputStream.write(`${NUKE} FAILURE exec ${cmd}\n${e.message}\n${e.stack}`);
+			if (e instanceof Error) {
+				outputStream.write(`${NUKE} FAILURE exec ${cmd}\n${e.message}\n${e.stack}`);
+			}
 		}
 
 		return true;
 	}
 };
-

@@ -1,7 +1,5 @@
 export const NUKE = "☢";
 
-export const NEW_LINE = "\n";
-
 export const DEFAULT_CONTENT = `
 ${NUKE} exec echo "do something"
 ${NUKE} IGNORED exec grep console.log -irl src | awk '{print "☢ open \\"" $1 "\\""}'

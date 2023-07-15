@@ -3,13 +3,11 @@ import readline from 'readline';
 import fs from "fs";
 import chalk from "chalk";
 
-import _map from "lodash/map";
-import _size from "lodash/size";
-import _reduce from "lodash/reduce";
+import _map from "lodash/map.js";
 
-import { NUKE, NEW_LINE, GHOSTFILE } from "../config";
+import { NUKE, GHOSTFILE } from "../config.js";
 import { Chunk } from "./parse/types.js";
-import { parseChunk } from "./parse";
+import { parseChunk } from "./parse/index.js";
 
 export class ChangeHandler {
 	thatWasUs: boolean = false;
@@ -20,20 +18,7 @@ export class ChangeHandler {
 		this.handling = false;
 	}
 
-	handle(path: string, stats: fs.Stats) {
-		// if (this.thatWasUs) {
-		// 	console.log(chalk.grey("last change was ours, ignoring.."));
-		// 	this.thatWasUs = false;
-		// 	return;
-		// }
-		// if (stats.size == 0) {
-		// 	console.log(chalk.grey("got an empty file, false change, fs hiccup, ignoring.."));
-		// 	return;
-		// }
-		if (stats.mtimeMs === this.mtimeMs) {
-			console.log(chalk.grey("same modification time, false change, ignoring.."));
-			return;
-		}
+	handle(path: string) {
 		console.info(chalk.blue(`${GHOSTFILE} CHANGED, PROCESSING...`));
 		if (this.handling) {
 			console.warn(chalk.bold(chalk.yellowBright("IGNORED CHANGE, STILL PROCESSING PREVIOUS EVENT")))
@@ -43,9 +28,9 @@ export class ChangeHandler {
 		const readStream = fs.createReadStream(path);
 		const tempPath = `${path}.tmp`;
 		const writeStream = fs.createWriteStream(tempPath);
-		
+
 		const lineRead = readline.createInterface({ input: readStream });
-		
+
 		let currentChunk: Chunk | null = null;
 		lineRead.on('line', line => {
 			if (line.match(`^${NUKE}`)) {
@@ -64,9 +49,9 @@ export class ChangeHandler {
 					content: ''
 				};
 			}
-			currentChunk.content += `${line}${NEW_LINE}`;
+			currentChunk.content += `${line}\n`;
 		});
-		
+
 		readStream.on('end', () => {
 			if (currentChunk != null) {
 				parseChunk(currentChunk, writeStream);

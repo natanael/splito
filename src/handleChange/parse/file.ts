@@ -1,8 +1,8 @@
-import fs from "fs-extra";
+import fs from "fs";
+import path from "path";
 import chalk from "chalk";
-import { NUKE, NEW_LINE } from "../../config";
+import { NUKE } from "../../config.js";
 import { Parser } from "./types";
-
 
 export const FILE: Parser = {
 	parseIfApplicable(chunk, outputStream) {
@@ -10,14 +10,12 @@ export const FILE: Parser = {
 		if (match == null) {
 			return false;
 		}
-	
+
 		const [, filename] = match;
 		console.log(chalk.bold("FILE"), filename);
-		
+
 		try {
-			fs.ensureFileSync(filename);
-			const response = fs.writeFileSync(filename, chunk.content);
-			console.log(JSON.stringify(response));
+			ensureFileSync(filename, chunk.content);
 			outputStream.write(`${chunk.key}\n${chunk.content}\n`
 				.replace(/\n/g, '‡')
 				.replace(/‡+$/, '‡')
@@ -32,3 +30,22 @@ export const FILE: Parser = {
 	}
 };
 
+function ensureFileSync(filepath: string, content: string | Buffer) {
+  const normalizedPath = path.normalize(filepath);
+  const dirname = path.dirname(normalizedPath);
+
+  try {
+    if (!fs.existsSync(dirname)) {
+      fs.mkdirSync(dirname, { recursive: true });
+    }
+
+    if (!fs.existsSync(normalizedPath)) {
+      fs.writeFileSync(normalizedPath, content);
+    }
+  } catch (error) {
+		console.error(chalk.red(chalk.bold(`COULD NOT ENSURE FILE ${filepath}`)), error);
+		if (error instanceof Error) {
+			throw new Error(`Failed to ensure the existence of file: ${filepath}\n${error.message}`);
+		}
+  }
+}

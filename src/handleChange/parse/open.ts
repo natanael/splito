@@ -1,6 +1,6 @@
-import fs from "fs-extra";
+import fs from "fs";
 import chalk from "chalk";
-import { NUKE } from "../../config";
+import { NUKE } from "../../config.js";
 import { Parser } from "./types";
 
 export const OPEN: Parser = {
@@ -9,7 +9,7 @@ export const OPEN: Parser = {
 		if (match == null) {
 			return false;
 		}
-		
+
 		let [, filename] = match;
 		filename = JSON.parse(filename);
 		console.log(chalk.bold("open", filename));
@@ -21,4 +21,3 @@ export const OPEN: Parser = {
 		return true;
 	}
 };
-

@@ -1,47 +1,57 @@
-import * as fs from "fs-extra";
+import fs, { type FSWatcher } from "fs";
 import chalk from "chalk";
-import * as chokidar from "chokidar";
-import _map from "lodash/map";
-import _size from "lodash/size";
-import _reduce from "lodash/reduce";
+import _map from "lodash/map.js";
 
-import { DEFAULT_CONTENT, GHOSTFILE, TEMP_GHOSTFILE } from "./config";
+import { DEFAULT_CONTENT, GHOSTFILE, TEMP_GHOSTFILE } from "./config.js";
 
-import {ChangeHandler} from "./handleChange";
-import { Stats } from "fs-extra";
+import {ChangeHandler} from "./handleChange/index.js";
+import { ChecksumEmitter } from "./checksum.js";
 
-class Cleaner {
-	cleaned: boolean = false;
-	constructor(private readonly watcher: chokidar.FSWatcher) {}
-	cleanup() {
-		if (this.cleaned) { return; }
-		console.log(chalk.bold(`[ Cleaning up ]`));
-		this.watcher.close();
+export async function main () {
+	fs.writeFileSync(GHOSTFILE, DEFAULT_CONTENT);
+
+	const watcher = new ChecksumEmitter(GHOSTFILE);
+	function cleanup() {
+		watcher.close();
 		try {
 			fs.unlinkSync(GHOSTFILE);
 			fs.unlinkSync(TEMP_GHOSTFILE);
 		} catch {}
-		console.log(chalk.grey(`All done`));
-		this.cleaned = true;
 	}
-}
 
-export function main () {
-	fs.writeFileSync(GHOSTFILE, DEFAULT_CONTENT);
-
-	const watcher = chokidar.watch(GHOSTFILE);
-	const cleaner = new Cleaner(watcher);
-	process.on('SIGINT',  () => cleaner.cleanup());
-	process.on('SIGTERM', () => cleaner.cleanup());
-	process.on('uncaughtException', () => cleaner.cleanup());
+	process.on('SIGINT',  () => {
+		console.log(chalk.bold(`[ SIGINT ]`))
+		cleanup()
+	});
+	process.on('SIGTERM', () => {
+		console.log(chalk.bold(`[ SIGTERM ]`))
+		cleanup()
+	});
+	process.on('uncaughtException', (e) => {
+		console.log(chalk.bold(`[ uncaughtException ]`), e)
+		cleanup()
+	});
 
 	const mainChangeHandler = new ChangeHandler();
-
-	watcher.on("change", (path: string, fsStats: Stats) => mainChangeHandler.handle(path, fsStats));
+	// let mem = process.memoryUsage()
+	watcher.on("checksumChanged", () => {
+		// console.log(memChange(mem, process.memoryUsage()))
+		// mem = process.memoryUsage()
+		mainChangeHandler.handle(GHOSTFILE);
+	});
 
 	console.info(chalk.blue(`All set! edit ./${GHOSTFILE}`));
 };
 
-if (require.main === module) {
-	main();
-}
+// function memChange(mem: NodeJS.MemoryUsage, newMem: NodeJS.MemoryUsage) {
+// 	return _map(newMem, (v, k) => {
+// 		const diff = v - mem[k as keyof NodeJS.MemoryUsage]
+// 		return `${k}: ${percentDiff(v, diff)}`
+// 	}).join('\n')
+// }
+
+// function percentDiff(a: number, b: number) {
+// 	return `${(100 - (((a - b) / a) * 100)).toFixed(2)}%`
+// }
+
+main()

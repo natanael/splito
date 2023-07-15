@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { NUKE } from "../../config";
+import { NUKE } from "../../config.js";
 import { Parser } from "./types";
 
 export const IGNORE: Parser = {
@@ -11,7 +11,7 @@ export const IGNORE: Parser = {
 
 		outputStream.write(`${chunk.key}\n`);
 		outputStream.write(chunk.content);
-		
+
 		return true;
 	}
 };
