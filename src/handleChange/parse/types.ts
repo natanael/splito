@@ -1,4 +1,4 @@
-import { WriteStream } from "fs-extra";
+import { WriteStream } from "fs";
 
 export interface Chunk {
 	key: string;
