@@ -1,7 +1,7 @@
 {
 	"name": "splito",
 	"type": "module",
-	"version": "0.0.32",
+	"version": "0.0.33",
 	"description": "Passive event based multifile editor",
 	"main": "index.js",
 	"engines": {
