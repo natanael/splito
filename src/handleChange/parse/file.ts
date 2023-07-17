@@ -39,9 +39,7 @@ function ensureFileSync(filepath: string, content: string | Buffer) {
       fs.mkdirSync(dirname, { recursive: true });
     }
 
-    if (!fs.existsSync(normalizedPath)) {
-      fs.writeFileSync(normalizedPath, content);
-    }
+		fs.writeFileSync(normalizedPath, content);
   } catch (error) {
 		console.error(chalk.red(chalk.bold(`COULD NOT ENSURE FILE ${filepath}`)), error);
 		if (error instanceof Error) {
